@@ -41,3 +41,8 @@ To run any of the experiments, go to the corresponding folder and run either tes
 > cd experiments/astrophysics/NIMGPC
 > python2 test_real.py 0
 ```
+
+```bash
+> cd experiments/active_learning/0.1/NIMGPC
+> python2 test_real.py 0 min_ll
+```
