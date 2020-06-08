@@ -1,0 +1,10 @@
+flux_1_100_gev
+flux_1_100_gev_error
+detection_significance
+lp_curve_significance
+pivot_energy
+lp_index
+lp_index_error
+lp_beta
+lp_beta_error
+source_type
