@@ -18,6 +18,7 @@ This repository comes with a series of experiments to evaluate the performance o
  * UCI: 8 multi-class datasets from the UCI repository.
  * MNIST: The MNIST dataset of handwritten digits.
  * Atrophysics: A real-world dataset from astrophysics.
+ * Active learning: An active learning problem.
 
 ### Experimental data
 
