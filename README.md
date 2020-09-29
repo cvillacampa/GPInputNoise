@@ -2,7 +2,7 @@
 
 Multi-class Gaussian Process Classification with Noisy Inputs
 
-Requirements: Python2.7, dill0.2.9, tensorflow1.15.2 and numpy1.16
+Requirements: Python2.7, dill0.2.9, tensorflow1.15.4 and numpy1.16
 
 You can install all the Python dependencies needed to execute the experiments with pip by running:
 
