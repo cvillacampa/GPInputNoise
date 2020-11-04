@@ -55,8 +55,7 @@ def neural_network(noisy_inputs, input_dims, output_dims, n_units, n_layers, sof
 
 
     if soft_ini:
-        select = tf.Variable(tf.truncated_normal([ output_dims ], stddev = 0.001) * -10.0)
-        mean = mean * tf.nn.sigmoid(select) + noisy_inputs[ : , 0 : output_dims ] * (1.0 - tf.nn.sigmoid(select))
+        mean = mean + noisy_inputs[ : , 0 : output_dims ]
 
     return mean, log_var
 

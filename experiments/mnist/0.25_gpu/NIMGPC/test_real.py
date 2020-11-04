@@ -3,7 +3,7 @@ import tensorflow as tf
 import sys
 sys.path.append("../../../..")
 from gp_input_noise.nimgpc_learn_noise import NIMGPC
-from gp_input_noise.rbf_ard import RBF_ARD
+from gp_input_noise.pol_9 import Pol_9
 
 np.random.seed(0)
 
@@ -13,8 +13,7 @@ X = np.load("../../data/X.npy")
 Y = np.load("../../data/Y.npy").astype(np.int).flatten()
 
 indices = np.load("../../data/splits.npy")[ fold, : ]
-noise = np.load("../../data/noise25.npy")
-
+noise = np.load("../../data/noise01.npy")
 
 n_train = int(len(indices) * 0.8571429)
 indices_train = indices[:n_train]
@@ -34,18 +33,14 @@ X_test = (X_test - mean_train) / std_train
 X_train = X_train + noise[ indices_train,  : ] 
 X_test = X_test + noise[ indices_test,  : ] 
 
-
-
-
 n_classes = np.max(y_train) + 1
 
 # We estimate the log length scales
 
 X_sample = X_train[ np.random.choice(np.arange(X_train.shape[ 0 ]), size = 1000), :  ]
-dist2 = np.sum(X_sample**2, 1, keepdims = True) - 2.0 * np.dot(X_sample, X_sample.T) + np.sum(X_sample**2, 1, keepdims = True).T
-log_l = 0.5 * np.log(np.median(dist2[ np.triu_indices(1000, 1) ]))
+log_l = np.log(np.mean(np.sum(X_sample**2, 1)))
 
-kernels = [ RBF_ARD(log_l * np.ones(X_train.shape[ 1 ]).astype(np.float32), -20.0, 1.0) for k in range(n_classes) ] 
+kernels = [ Pol_9(log_l * np.ones(X_train.shape[ 1 ]), 0.0, np.log(1.0 / 512)) for k in range(n_classes) ] 
 
 # We choose the inducing points at random (different for each class)
 
@@ -56,7 +51,7 @@ model = NIMGPC(kernels, inducing_points, n_classes, X_train, 0.25)
 
 np.random.seed(0)
 
-model.fit(X_train, y_train, tf.train.AdamOptimizer(learning_rate = 0.001), 350, 200, X_test, y_test, "output_results_" + str(fold) + ".txt")
+model.fit(X_train, y_train, tf.train.AdamOptimizer(learning_rate = 0.0.25), 350, 200, X_test, y_test, "output_results_" + str(fold) + ".txt")
 
 
 
