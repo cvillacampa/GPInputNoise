@@ -14,7 +14,7 @@ X = np.load("../../data/X.npy")
 Y = np.load("../../data/Y.npy").astype(np.int).flatten()
 
 indices = np.load("../../data/splits.npy")[ fold, : ]
-noise = np.load("../../data/noise01.npy")
+noise = np.load("../../data/noise5.npy")
 
 n_train = int(len(indices) * 0.8571429)
 indices_train = indices[:n_train]
