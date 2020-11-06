@@ -49,6 +49,6 @@ model = MGPC(kernels, inducing_points, n_classes, X_train.shape[ 0 ])
 
 np.random.seed(0)
 
-model.fit(X_train, y_train, tf.train.AdamOptimizer(learning_rate = 0.0.25), 350, 200, X_test, y_test, "output_results_" + str(fold) + ".txt")
+model.fit(X_train, y_train, tf.train.AdamOptimizer(learning_rate = 0.001), 350, 200, X_test, y_test, "output_results_" + str(fold) + ".txt")
 
 

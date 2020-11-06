@@ -47,7 +47,7 @@ kernels = [ Pol_9(log_l * np.ones(X_train.shape[ 1 ]), 0.0, np.log(1.0 / 512)) f
 inducing_points = np.stack([ X_train[ np.random.choice(np.arange(X_train.shape[ 0 ]), size = np.minimum(100, int(X.shape[ 0 ] * 0.05))), \
         :  ].astype(np.float32) for i in range(n_classes) ])
 
-model = NIMGPC_FO(kernels, inducing_points, n_classes, X_train, 0.1)
+model = NIMGPC_FO(kernels, inducing_points, n_classes, X_train, 0.01)
 
 np.random.seed(0)
 
